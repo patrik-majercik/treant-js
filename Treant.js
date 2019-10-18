@@ -876,7 +876,7 @@
             } // else this.CONFIG.scrollbar == 'None'
 
             return this;
-        },        
+        },
         /**
          * @param {TreeNode} treeNode
          * @param {boolean} hidePoint
@@ -977,13 +977,13 @@
                 P1 = {}, P2 = {};
 
             if ( orientation === 'NORTH' || orientation === 'SOUTH' ) {
-                P1.y = P2.y = (startPoint.y + endPoint.y) / 2;
+                P1.y = P2.y = endPoint.y - this.CONFIG.levelSeparation / 2;
 
                 P1.x = startPoint.x;
                 P2.x = endPoint.x;
             }
             else if ( orientation === 'EAST' || orientation === 'WEST' ) {
-                P1.x = P2.x = (startPoint.x + endPoint.x) / 2;
+                P1.x = P2.x = endPoint.x - this.CONFIG.levelSeparation / 2;
 
                 P1.y = startPoint.y;
                 P2.y = endPoint.y;
@@ -1854,9 +1854,9 @@
                 if (key.startsWith("data-")) {
                     node.setAttribute(key, this.text[key]);
                 } else {
-                    
+
                     var textElement = document.createElement(this.text[key].href ? 'a' : 'p');
-                    
+
                     // make an <a> element if required
                     if (this.text[key].href) {
                         textElement.href = this.text[key].href;
@@ -1864,14 +1864,14 @@
                             textElement.target = this.text[key].target;
                         }
                     }
-                    
+
                     textElement.className =  "node-"+key;
                     textElement.appendChild(document.createTextNode(
                         this.text[key].val ? this.text[key].val :
                         this.text[key] instanceof Object ? "'val' param missing!" : this.text[key]
                     )
                     );
-                    
+
                     node.appendChild(textElement);
                 }
             }
